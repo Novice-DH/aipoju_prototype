@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI破局俱乐部 - 活动详情</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        dark: '#1F2937',
+                        neon: '#00FFFF',
+                        cyber: '#FF00FF',
+                    },
+                    animation: {
+                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'rotate': 'rotate 20s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 5px rgba(59, 130, 246, 0.5)' },
+                            '100%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.8)' },
+                        },
+                        rotate: {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #0F172A;
+            color: #E2E8F0;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .status-bar {
+            height: 44px;
+            background-color: #000;
+            color: white;
+            font-size: 14px;
+            padding: 0 16px;
+        }
+        
+        .tab-bar {
+            height: 83px;
+            background-color: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
+        .content-area {
+            height: calc(100vh - 44px - 83px);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            position: relative;
+        }
+        
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 隐藏滚动条但保留功能 */
+        .content-area::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .content-area {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #6366F1, #3B82F6);
+        }
+        
+        .activity-header {
+            background: linear-gradient(135deg, #4F46E5, #3B82F6);
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .activity-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: scanLine 3s linear infinite;
+            z-index: 1;
+        }
+        
+        @keyframes scanLine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .activity-info {
+            margin-top: -60px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .neon-border {
+            position: relative;
+        }
+        
+        .neon-border::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+        
+        .glow-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+        }
+        
+        .glow-button:hover {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.8);
+        }
+        
+        .glow-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .glow-button:hover::after {
+            opacity: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: rgba(59, 130, 246, 0.5);
+            border-radius: 50%;
+            animation: float 3s infinite ease-in-out;
+            pointer-events: none;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .tech-quote {
+            font-style: italic;
+            text-align: center;
+            margin: 20px 0;
+            color: #a5b4fc;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .list-item-glow {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .list-item-glow:hover {
+            color: #3B82F6;
+            transform: translateX(5px);
+        }
+        
+        .list-item-glow::before {
+            content: '';
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 5px;
+            background-color: #3B82F6;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .list-item-glow:hover::before {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- iOS 状态栏 -->
+    <div class="status-bar flex justify-between items-center">
+        <div>9:41</div>
+        <div class="flex space-x-2">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>
+    
+    <!-- 内容区域 -->
+    <div class="content-area">
+        <!-- 背景粒子 -->
+        <div class="particle absolute top-1/4 left-1/4" style="animation-delay: 0s;"></div>
+        <div class="particle absolute top-3/4 left-1/2" style="animation-delay: 0.5s;"></div>
+        <div class="particle absolute top-1/3 left-3/4" style="animation-delay: 1s;"></div>
+        <div class="particle absolute top-2/3 left-1/3" style="animation-delay: 1.5s;"></div>
+        
+        <!-- 活动头图 -->
+        <div class="activity-header relative">
+            <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" class="w-full h-full object-cover" alt="活动头图">
+            
+            <!-- 返回按钮 -->
+            <a href="activity.html" class="absolute top-4 left-4 w-8 h-8 rounded-full bg-black/30 flex items-center justify-center text-white z-10">
+                <i class="fas fa-chevron-left"></i>
+            </a>
+            
+            <!-- 分享按钮 -->
+            <button class="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/30 flex items-center justify-center text-white z-10">
+                <i class="fas fa-share-alt"></i>
+            </button>
+        </div>
+        
+        <!-- 活动信息 -->
+        <div class="activity-info px-4">
+            <div class="glass-card rounded-2xl p-5 mb-4 neon-border">
+                <div class="bg-blue-900/50 text-blue-400 text-xs font-medium px-2 py-1 rounded-full inline-block mb-2">【预售】</div>
+                <h1 class="text-xl font-bold mb-2 text-white">视觉与AI技术入门课</h1>
+                
+                <div class="flex items-center text-gray-400 text-sm mb-3">
+                    <i class="far fa-calendar-alt mr-2"></i>
+                    <span>3月15日 20:00-22:00</span>
+                </div>
+                
+                <div class="flex justify-between items-center mb-4">
+                    <div class="flex items-center">
+                        <div class="flex -space-x-2 mr-2">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-6 h-6 rounded-full border-2 border-gray-800" alt="用户头像">
+                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-6 h-6 rounded-full border-2 border-gray-800" alt="用户头像">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-6 h-6 rounded-full border-2 border-gray-800" alt="用户头像">
+                        </div>
+                        <span class="text-sm text-gray-400">72人报名</span>
+                    </div>
+                    <div class="text-primary font-bold text-xl">¥399</div>
+                </div>
+                
+                <div class="flex space-x-2">
+                    <button class="flex-1 bg-gradient-to-r from-blue-600 to-blue-400 text-white py-2.5 rounded-full font-medium glow-button">立即报名</button>
+                    <button class="w-12 h-12 rounded-full border-2 border-blue-900/50 flex items-center justify-center bg-gray-800">
+                        <i class="far fa-heart text-blue-400 text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 技术理念 -->
+            <div class="tech-quote px-4">
+                "何以破局，唯有行动"
+            </div>
+            
+            <!-- 活动详情 -->
+            <div class="glass-card rounded-2xl p-5 mb-4 neon-border">
+                <h2 class="text-lg font-bold mb-3 text-white flex items-center">
+                    <i class="fas fa-info-circle text-blue-400 mr-2"></i>
+                    活动详情
+                </h2>
+                
+                <div class="text-gray-300 text-sm space-y-3">
+                    <p>本课程将带你深入了解视觉AI技术的基础知识和实际应用，适合对AI技术感兴趣的初学者。</p>
+                    
+                    <h3 class="font-bold mt-4 text-blue-300">课程内容：</h3>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li class="list-item-glow">视觉AI技术概述</li>
+                        <li class="list-item-glow">计算机视觉基础</li>
+                        <li class="list-item-glow">深度学习在视觉领域的应用</li>
+                        <li class="list-item-glow">实战案例分析</li>
+                        <li class="list-item-glow">未来发展趋势</li>
+                    </ul>
+                    
+                    <h3 class="font-bold mt-4 text-blue-300">讲师介绍：</h3>
+                    <div class="flex items-center mt-2">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-12 h-12 rounded-full mr-3" alt="讲师头像">
+                            <div class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-green-500 border border-gray-800"></div>
+                        </div>
+                        <div>
+                            <div class="font-bold text-white">张教授</div>
+                            <div class="text-gray-400 text-xs">清华大学计算机系副教授，视觉AI领域专家</div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="font-bold mt-4 text-blue-300">适合人群：</h3>
+                    <p>对AI技术感兴趣的初学者，产品经理，设计师，开发者等。</p>
+                    
+                    <h3 class="font-bold mt-4 text-blue-300">课程福利：</h3>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li class="list-item-glow">课程回放永久观看</li>
+                        <li class="list-item-glow">专属学习社群</li>
+                        <li class="list-item-glow">讲师答疑服务</li>
+                        <li class="list-item-glow">精选学习资料</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 活动须知 -->
+            <div class="glass-card rounded-2xl p-5 mb-4 neon-border">
+                <h2 class="text-lg font-bold mb-3 text-white flex items-center">
+                    <i class="fas fa-exclamation-circle text-yellow-400 mr-2"></i>
+                    活动须知
+                </h2>
+                
+                <div class="text-gray-300 text-sm space-y-2">
+                    <div class="flex items-start">
+                        <i class="fas fa-info-circle text-blue-400 mt-1 mr-2"></i>
+                        <p>报名成功后，将收到确认邮件，包含课程链接和学习资料。</p>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-info-circle text-blue-400 mt-1 mr-2"></i>
+                        <p>课程将通过Zoom进行直播，请提前安装并测试。</p>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-info-circle text-blue-400 mt-1 mr-2"></i>
+                        <p>如有特殊情况无法参加，可申请退款（活动开始前24小时）。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 用户评价 -->
+            <div class="glass-card rounded-2xl p-5 mb-20 neon-border">
+                <div class="flex justify-between items-center mb-3">
+                    <h2 class="text-lg font-bold text-white flex items-center">
+                        <i class="fas fa-comment-alt text-purple-400 mr-2"></i>
+                        用户评价
+                    </h2>
+                    <span class="text-primary text-sm">4.9 <i class="fas fa-star text-yellow-400"></i></span>
+                </div>
+                
+                <!-- 评价1 -->
+                <div class="border-b border-gray-800 pb-3 mb-3">
+                    <div class="flex items-start mb-2">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-8 h-8 rounded-full mr-2" alt="用户头像">
+                        <div>
+                            <div class="font-bold text-sm text-white">李明</div>
+                            <div class="text-gray-400 text-xs">2023-02-28</div>
+                        </div>
+                    </div>
+                    <div class="flex mb-1">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-sm text-gray-300">课程内容非常丰富，讲师讲解清晰，对初学者很友好，强烈推荐！</p>
+                </div>
+                
+                <!-- 评价2 -->
+                <div class="border-b border-gray-800 pb-3 mb-3">
+                    <div class="flex items-start mb-2">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-8 h-8 rounded-full mr-2" alt="用户头像">
+                        <div>
+                            <div class="font-bold text-sm text-white">王小明</div>
+                            <div class="text-gray-400 text-xs">2023-02-25</div>
+                        </div>
+                    </div>
+                    <div class="flex mb-1">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-sm text-gray-300">作为一名产品经理，这门课程让我对AI视觉技术有了更深入的了解，对工作很有帮助。</p>
+                </div>
+                
+                <!-- 评价3 -->
+                <div>
+                    <div class="flex items-start mb-2">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-8 h-8 rounded-full mr-2" alt="用户头像">
+                        <div>
+                            <div class="font-bold text-sm text-white">张小红</div>
+                            <div class="text-gray-400 text-xs">2023-02-20</div>
+                        </div>
+                    </div>
+                    <div class="flex mb-1">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="far fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-sm text-gray-300">课程内容很好，但希望能有更多的实战案例和代码讲解。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div class="tab-bar flex justify-around items-center">
+        <a href="home.html" class="flex flex-col items-center text-gray-500">
+            <i class="fas fa-home text-xl"></i>
+            <span class="text-xs mt-1">首页</span>
+        </a>
+        <a href="activity.html" class="flex flex-col items-center text-primary">
+            <i class="fas fa-calendar-alt text-xl"></i>
+            <span class="text-xs mt-1">活动</span>
+        </a>
+        <a href="community.html" class="flex flex-col items-center text-gray-500">
+            <i class="fas fa-comments text-xl"></i>
+            <span class="text-xs mt-1">社区</span>
+        </a>
+        <a href="tools.html" class="flex flex-col items-center text-gray-500">
+            <i class="fas fa-tools text-xl"></i>
+            <span class="text-xs mt-1">AI工具</span>
+        </a>
+        <a href="profile.html" class="flex flex-col items-center text-gray-500">
+            <i class="fas fa-user text-xl"></i>
+            <span class="text-xs mt-1">我的</span>
+        </a>
+    </div>
+</body>
+</html> 

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI破局俱乐部</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        dark: '#1F2937',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #F9FAFB;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .status-bar {
+            height: 44px;
+            background-color: #000;
+            color: white;
+            font-size: 14px;
+            padding: 0 16px;
+        }
+        
+        .tab-bar {
+            height: 83px;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .content-area {
+            height: calc(100vh - 44px - 83px);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 隐藏滚动条但保留功能 */
+        .content-area::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .content-area {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- iOS 状态栏 -->
+    <div class="status-bar flex justify-between items-center">
+        <div>9:41</div>
+        <div class="flex space-x-2">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>
+    
+    <!-- 内容区域 -->
+    <div class="content-area">
+        <!-- 页面内容将在这里 -->
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div class="tab-bar flex justify-around items-center">
+        <a href="home.html" class="flex flex-col items-center">
+            <i class="fas fa-home text-xl"></i>
+            <span class="text-xs mt-1">首页</span>
+        </a>
+        <a href="activity.html" class="flex flex-col items-center">
+            <i class="fas fa-calendar-alt text-xl"></i>
+            <span class="text-xs mt-1">活动</span>
+        </a>
+        <a href="tools.html" class="flex flex-col items-center">
+            <i class="fas fa-tools text-xl"></i>
+            <span class="text-xs mt-1">AI工具</span>
+        </a>
+        <a href="community.html" class="flex flex-col items-center">
+            <i class="fas fa-comments text-xl"></i>
+            <span class="text-xs mt-1">社区</span>
+        </a>
+        <a href="profile.html" class="flex flex-col items-center">
+            <i class="fas fa-user text-xl"></i>
+            <span class="text-xs mt-1">我的</span>
+        </a>
+    </div>
+</body>
+</html> 

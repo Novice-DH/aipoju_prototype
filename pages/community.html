@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI破局俱乐部 - 社区</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        dark: '#1F2937',
+                        neon: '#00FFFF',
+                        cyber: '#FF00FF',
+                    },
+                    animation: {
+                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 5px rgba(59, 130, 246, 0.5)' },
+                            '100%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.8)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #0F172A;
+            color: #E2E8F0;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .status-bar {
+            height: 44px;
+            background-color: #000;
+            color: white;
+            font-size: 14px;
+            padding: 0 16px;
+        }
+        
+        .tab-bar {
+            height: 83px;
+            background-color: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
+        .content-area {
+            height: calc(100vh - 44px - 83px);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 隐藏滚动条但保留功能 */
+        .content-area::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .content-area {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .post-card {
+            transition: transform 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .post-card:active {
+            transform: scale(0.98);
+        }
+        
+        .neon-border {
+            position: relative;
+        }
+        
+        .neon-border::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+        
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px rgba(59, 130, 246, 0.5); }
+            100% { box-shadow: 0 0 15px rgba(59, 130, 246, 0.8); }
+        }
+        
+        .particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: rgba(59, 130, 246, 0.5);
+            border-radius: 50%;
+            animation: float 3s infinite ease-in-out;
+        }
+        
+        .cyber-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .cyber-button::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+            transform: rotate(0deg);
+            animation: rotate 10s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .cyber-button:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+    <!-- iOS 状态栏 -->
+    <div class="status-bar flex justify-between items-center">
+        <div>9:41</div>
+        <div class="flex space-x-2">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>
+    
+    <!-- 内容区域 -->
+    <div class="content-area">
+        <!-- 顶部导航 -->
+        <div class="px-4 py-3 flex justify-between items-center bg-gradient-to-r from-blue-600 to-blue-800">
+            <div class="text-xl font-bold text-white flex items-center">
+                <i class="fas fa-users mr-2"></i>
+                社区
+            </div>
+            <div class="flex space-x-3">
+                <button class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white">
+                    <i class="fas fa-bell"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 发布框 -->
+        <div class="px-4 py-3 relative">
+            <!-- 动态粒子效果 -->
+            <div class="particle absolute top-1/4 left-1/4" style="animation-delay: 0s;"></div>
+            <div class="particle absolute top-3/4 left-1/2" style="animation-delay: 0.5s;"></div>
+            
+            <div class="glass-card rounded-2xl p-4 neon-border">
+                <div class="flex items-center mb-3">
+                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-10 h-10 rounded-full mr-3" alt="用户头像">
+                    <div class="flex-1 bg-gray-800 rounded-full px-4 py-2.5 text-gray-400 text-sm">
+                        分享你的AI使用心得...
+                    </div>
+                </div>
+                <div class="flex justify-around">
+                    <button class="flex items-center text-gray-400 text-sm hover:text-green-400 transition-colors">
+                        <i class="fas fa-image text-green-400 mr-1"></i>
+                        <span>图片</span>
+                    </button>
+                    <button class="flex items-center text-gray-400 text-sm hover:text-blue-400 transition-colors">
+                        <i class="fas fa-link text-blue-400 mr-1"></i>
+                        <span>链接</span>
+                    </button>
+                    <button class="flex items-center text-gray-400 text-sm hover:text-purple-400 transition-colors">
+                        <i class="fas fa-hashtag text-purple-400 mr-1"></i>
+                        <span>话题</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 分类导航 -->
+        <div class="flex px-4 py-2 space-x-4 overflow-x-auto bg-gray-900">
+            <button class="px-4 py-2 rounded-full bg-gradient-to-r from-blue-600 to-blue-400 text-white font-medium">推荐</button>
+            <button class="px-4 py-2 rounded-full bg-gray-800 text-gray-300 font-medium">最新</button>
+            <button class="px-4 py-2 rounded-full bg-gray-800 text-gray-300 font-medium">热门</button>
+            <button class="px-4 py-2 rounded-full bg-gray-800 text-gray-300 font-medium">关注</button>
+            <button class="px-4 py-2 rounded-full bg-gray-800 text-gray-300 font-medium">问答</button>
+        </div>
+        
+        <!-- 帖子列表 -->
+        <div class="px-4 py-3">
+            <!-- 帖子1 -->
+            <div class="glass-card rounded-2xl p-4 mb-4 post-card neon-border">
+                <div class="flex items-start mb-3">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-10 h-10 rounded-full mr-3" alt="用户头像">
+                    <div>
+                        <div class="font-bold text-white">李明</div>
+                        <div class="text-gray-400 text-xs">2小时前</div>
+                    </div>
+                </div>
+                <p class="text-sm mb-3 text-gray-300">分享一个超实用的AI工具：Midjourney，可以生成超逼真的图像，已经用它完成了几个设计项目，效果惊人！</p>
+                <div class="grid grid-cols-2 gap-2 mb-3">
+                    <img src="https://images.unsplash.com/photo-1675271591211-728a94db8e4d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80" class="w-full h-24 object-cover rounded-lg" alt="AI生成图像">
+                    <img src="https://images.unsplash.com/photo-1686193142599-2b0b511a5ca4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80" class="w-full h-24 object-cover rounded-lg" alt="AI生成图像">
+                </div>
+                <div class="flex justify-between text-gray-400 text-sm">
+                    <div class="flex items-center hover:text-red-400 transition-colors cursor-pointer">
+                        <i class="far fa-heart mr-1"></i>
+                        <span>42</span>
+                    </div>
+                    <div class="flex items-center hover:text-blue-400 transition-colors cursor-pointer">
+                        <i class="far fa-comment mr-1"></i>
+                        <span>18</span>
+                    </div>
+                    <div class="flex items-center hover:text-green-400 transition-colors cursor-pointer">
+                        <i class="far fa-share-square mr-1"></i>
+                        <span>分享</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 帖子2 -->
+            <div class="glass-card rounded-2xl p-4 mb-4 post-card neon-border">
+                <div class="flex items-start mb-3">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-10 h-10 rounded-full mr-3" alt="用户头像">
+                    <div>
+                        <div class="font-bold text-white">王小明</div>
+                        <div class="text-gray-400 text-xs">4小时前</div>
+                    </div>
+                </div>
+                <p class="text-sm mb-3 text-gray-300">有没有推荐的AI写作工具？最近需要写一些营销文案，想找一个能帮我提高效率的工具。</p>
+                <div class="bg-gray-800 rounded-xl p-3 mb-3">
+                    <div class="flex items-center text-xs text-blue-400 mb-1">
+                        <i class="fas fa-hashtag mr-1"></i>
+                        <span>AI写作</span>
+                    </div>
+                </div>
+                <div class="flex justify-between text-gray-400 text-sm">
+                    <div class="flex items-center hover:text-red-400 transition-colors cursor-pointer">
+                        <i class="far fa-heart mr-1"></i>
+                        <span>15</span>
+                    </div>
+                    <div class="flex items-center hover:text-blue-400 transition-colors cursor-pointer">
+                        <i class="far fa-comment mr-1"></i>
+                        <span>24</span>
+                    </div>
+                    <div class="flex items-center hover:text-green-400 transition-colors cursor-pointer">
+                        <i class="far fa-share-square mr-1"></i>
+                        <span>分享</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 帖子3 -->
+            <div class="glass-card rounded-2xl p-4 mb-4 post-card neon-border">
+                <div class="flex items-start mb-3">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-10 h-10 rounded-full mr-3" alt="用户头像">
+                    <div>
+                        <div class="font-bold text-white">张小红</div>
+                        <div class="text-gray-400 text-xs">昨天 18:30</div>
+                    </div>
+                </div>
+                <p class="text-sm mb-3 text-gray-300">昨天参加了AI破局俱乐部的线下活动，收获满满！认识了很多志同道合的朋友，分享一些活动照片~</p>
+                <div class="grid grid-cols-3 gap-1 mb-3">
+                    <img src="https://images.unsplash.com/photo-1591115765373-5207764f72e4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80" class="w-full h-20 object-cover rounded-lg" alt="活动照片">
+                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80" class="w-full h-20 object-cover rounded-lg" alt="活动照片">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80" class="w-full h-20 object-cover rounded-lg" alt="活动照片">
+                </div>
+                <div class="flex justify-between text-gray-400 text-sm">
+                    <div class="flex items-center hover:text-red-400 transition-colors cursor-pointer">
+                        <i class="far fa-heart mr-1"></i>
+                        <span>78</span>
+                    </div>
+                    <div class="flex items-center hover:text-blue-400 transition-colors cursor-pointer">
+                        <i class="far fa-comment mr-1"></i>
+                        <span>32</span>
+                    </div>
+                    <div class="flex items-center hover:text-green-400 transition-colors cursor-pointer">
+                        <i class="far fa-share-square mr-1"></i>
+                        <span>分享</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 帖子4 -->
+            <div class="glass-card rounded-2xl p-4 mb-4 post-card neon-border">
+                <div class="flex items-start mb-3">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-10 h-10 rounded-full mr-3" alt="用户头像">
+                    <div>
+                        <div class="font-bold text-white">赵工程师</div>
+                        <div class="text-gray-400 text-xs">昨天 10:15</div>
+                    </div>
+                </div>
+                <p class="text-sm mb-3 text-gray-300">分享一个AI开发的小技巧：在使用OpenAI API时，通过精心设计的prompt可以大幅提高模型输出质量。我整理了一份prompt工程指南，有需要的可以私信我。</p>
+                <div class="bg-blue-900/30 rounded-xl p-3 mb-3">
+                    <div class="flex items-center text-xs text-blue-400 mb-1">
+                        <i class="fas fa-file-alt mr-1"></i>
+                        <span>Prompt工程指南.pdf</span>
+                    </div>
+                </div>
+                <div class="flex justify-between text-gray-400 text-sm">
+                    <div class="flex items-center hover:text-red-400 transition-colors cursor-pointer">
+                        <i class="far fa-heart mr-1"></i>
+                        <span>126</span>
+                    </div>
+                    <div class="flex items-center hover:text-blue-400 transition-colors cursor-pointer">
+                        <i class="far fa-comment mr-1"></i>
+                        <span>45</span>
+                    </div>
+                    <div class="flex items-center hover:text-green-400 transition-colors cursor-pointer">
+                        <i class="far fa-share-square mr-1"></i>
+                        <span>分享</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 浮动发布按钮 -->
+        <div class="fixed bottom-24 right-4">
+            <button class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-600 to-blue-400 text-white flex items-center justify-center shadow-lg cyber-button">
+                <i class="fas fa-plus text-lg"></i>
+            </button>
+        </div>
+        
+        <!-- 破局理念 -->
+        <div class="px-4 py-3 mb-6">
+            <div class="glass-card rounded-2xl p-4 bg-gradient-to-br from-blue-900/80 to-purple-900/80 neon-border">
+                <h2 class="text-lg font-bold text-white mb-2 flex items-center">
+                    <i class="fas fa-lightbulb text-yellow-400 mr-2"></i>
+                    破局理念
+                </h2>
+                <p class="text-sm text-gray-300 mb-3">拥抱AI，勇于破局，追求创新，持续突破</p>
+                <div class="text-center">
+                    <p class="text-lg font-bold text-white bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">何以破局，唯有行动</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div class="tab-bar flex justify-around items-center">
+        <a href="home.html" class="flex flex-col items-center text-gray-500">
+            <i class="fas fa-home text-xl"></i>
+            <span class="text-xs mt-1">首页</span>
+        </a>
+        <a href="activity.html" class="flex flex-col items-center text-gray-500">
+            <i class="fas fa-calendar-alt text-xl"></i>
+            <span class="text-xs mt-1">活动</span>
+        </a>
+        <a href="community.html" class="flex flex-col items-center text-blue-500">
+            <i class="fas fa-comments text-xl"></i>
+            <span class="text-xs mt-1">社区</span>
+        </a>
+        <a href="tools.html" class="flex flex-col items-center text-gray-500">
+            <i class="fas fa-tools text-xl"></i>
+            <span class="text-xs mt-1">AI工具</span>
+        </a>
+        <a href="profile.html" class="flex flex-col items-center text-gray-500">
+            <i class="fas fa-user text-xl"></i>
+            <span class="text-xs mt-1">我的</span>
+        </a>
+    </div>
+</body>
+</html> 
