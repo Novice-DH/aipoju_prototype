@@ -98,77 +98,49 @@
             align-items: center;
             justify-content: center;
             font-size: 24px;
-            position: relative;
-            overflow: hidden;
         }
         
-        .tool-icon::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
-            animation: rotate 10s linear infinite;
-        }
-        
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        .tool-card {
-            transition: all 0.3s ease;
+        .neon-border {
             position: relative;
         }
         
-        .tool-card:active {
-            transform: scale(0.98);
-        }
-        
-        .tool-card::before {
-            content: '';
+        .neon-border::after {
+            content: "";
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #3b82f6, #10b981);
-            z-index: 1;
-            animation: neonPulse 2s infinite alternate;
+            bottom: 0;
+            border-radius: inherit;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+            pointer-events: none;
         }
         
-        @keyframes neonPulse {
-            0% { opacity: 0.5; }
-            100% { opacity: 1; }
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px rgba(59, 130, 246, 0.5); }
+            100% { box-shadow: 0 0 15px rgba(59, 130, 246, 0.8); }
         }
         
-        .glow-button {
+        .cyber-line {
             position: relative;
             overflow: hidden;
-            transition: all 0.3s;
-            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
         }
         
-        .glow-button:hover {
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.8);
-        }
-        
-        .glow-button::after {
-            content: '';
+        .cyber-line::before {
+            content: "";
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.3s;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #3B82F6, transparent);
+            animation: cyber-line-anim 3s infinite;
         }
         
-        .glow-button:hover::after {
-            opacity: 1;
+        @keyframes cyber-line-anim {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
         
         .particle {
@@ -178,42 +150,6 @@
             background: rgba(59, 130, 246, 0.5);
             border-radius: 50%;
             animation: float 3s infinite ease-in-out;
-            pointer-events: none;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        .tech-quote {
-            font-style: italic;
-            text-align: center;
-            margin: 20px 0;
-            color: #a5b4fc;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-        
-        .cyber-search {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cyber-search::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
-            animation: scanEffect 3s infinite;
-        }
-        
-        @keyframes scanEffect {
-            0% { left: -100%; }
-            100% { left: 100%; }
         }
     </style>
 </head>
@@ -230,187 +166,285 @@
     
     <!-- 内容区域 -->
     <div class="content-area">
-        <!-- 背景粒子 -->
-        <div class="particle absolute top-1/4 left-1/4" style="animation-delay: 0s;"></div>
-        <div class="particle absolute top-3/4 left-1/2" style="animation-delay: 0.5s;"></div>
-        <div class="particle absolute top-1/3 left-3/4" style="animation-delay: 1s;"></div>
-        <div class="particle absolute top-2/3 left-1/3" style="animation-delay: 1.5s;"></div>
-        <div class="particle absolute top-1/2 left-1/4" style="animation-delay: 2s;"></div>
-        
         <!-- 顶部导航 -->
-        <div class="px-4 py-3 flex justify-between items-center">
+        <div class="px-4 py-3 flex justify-between items-center bg-gradient-to-r from-blue-600 to-blue-800">
             <div class="text-xl font-bold text-white flex items-center">
-                <i class="fas fa-tools mr-2 text-blue-400 animate-pulse-fast"></i>
-                AI工具研发中心
+                <i class="fas fa-tools mr-2"></i>
+                AI工具库
             </div>
             <div class="flex space-x-3">
-                <button class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center">
-                    <i class="fas fa-search text-blue-400"></i>
+                <button class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white">
+                    <i class="fas fa-search"></i>
                 </button>
-                <button class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center">
-                    <i class="fas fa-sliders-h text-blue-400"></i>
+                <button class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white">
+                    <i class="fas fa-star"></i>
                 </button>
             </div>
         </div>
         
-        <!-- 技术理念 -->
-        <div class="tech-quote px-4">
-            "何以破局，唯有行动"
+        <!-- 工具分类 -->
+        <div class="flex px-4 py-2 space-x-2 overflow-x-auto bg-gray-900">
+            <button class="px-3 py-1.5 rounded-full bg-gradient-to-r from-blue-600 to-blue-400 text-white text-sm font-medium">全部</button>
+            <button class="px-3 py-1.5 rounded-full bg-gray-800 text-gray-300 text-sm font-medium">内容</button>
+            <button class="px-3 py-1.5 rounded-full bg-gray-800 text-gray-300 text-sm font-medium">图像</button>
+            <button class="px-3 py-1.5 rounded-full bg-gray-800 text-gray-300 text-sm font-medium">视频</button>
+            <button class="px-3 py-1.5 rounded-full bg-gray-800 text-gray-300 text-sm font-medium">效率</button>
+            <button class="px-3 py-1.5 rounded-full bg-gray-800 text-gray-300 text-sm font-medium">开发</button>
         </div>
         
-        <!-- 工具搜索 -->
-        <div class="px-4 py-2">
-            <div class="relative cyber-search">
-                <input type="text" placeholder="搜索AI工具..." class="w-full bg-gray-800 text-white rounded-full py-2.5 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:bg-gray-700 border border-blue-900">
-                <i class="fas fa-search absolute left-4 top-3 text-blue-400"></i>
-            </div>
-        </div>
-        
-        <!-- 分类导航 -->
-        <div class="flex px-4 py-2 space-x-2 overflow-x-auto">
-            <button class="px-3 py-2 rounded-full bg-gradient-to-r from-blue-600 to-blue-400 text-white font-medium glow-button text-sm">全部</button>
-            <button class="px-3 py-2 rounded-full bg-gray-800 text-gray-300 font-medium text-sm">文本</button>
-            <button class="px-3 py-2 rounded-full bg-gray-800 text-gray-300 font-medium text-sm">图像</button>
-            <button class="px-3 py-2 rounded-full bg-gray-800 text-gray-300 font-medium text-sm">音频</button>
-            <button class="px-3 py-2 rounded-full bg-gray-800 text-gray-300 font-medium text-sm">视频</button>
-            <button class="px-3 py-2 rounded-full bg-gray-800 text-gray-300 font-medium text-sm">开发</button>
-        </div>
-        
-        <!-- 推荐工具 -->
+        <!-- 精选工具 -->
         <div class="px-4 py-3">
-            <h2 class="text-lg font-bold mb-3 text-white flex items-center">
-                <i class="fas fa-star text-yellow-400 mr-2"></i>
-                推荐工具
-            </h2>
+            <h2 class="text-lg font-bold mb-3 text-white">精选AI工具</h2>
             
-            <div class="grid grid-cols-2 gap-4 mb-6">
-                <!-- 工具卡片1 -->
-                <div class="glass-card rounded-2xl p-4 tool-card">
-                    <div class="flex items-center mb-3">
-                        <div class="tool-icon bg-blue-900/50 text-blue-400 mr-3">
-                            <i class="fas fa-robot"></i>
+            <div class="glass-card rounded-xl overflow-hidden mb-4 neon-border">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1679922579069-18855e0249f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80" class="w-full h-40 object-cover" alt="Claude">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-1">Claude</h3>
+                                <div class="flex space-x-2 mb-2">
+                                    <span class="bg-blue-900/70 text-blue-300 text-xs px-2 py-1 rounded-full">大语言模型</span>
+                                    <span class="bg-blue-900/70 text-blue-300 text-xs px-2 py-1 rounded-full">专业创作</span>
+                                </div>
+                            </div>
+                            <div class="bg-blue-500 rounded-full w-10 h-10 flex items-center justify-center">
+                                <i class="fas fa-arrow-right text-white"></i>
                         </div>
-                        <div>
-                            <h3 class="font-bold text-white">ChatGPT</h3>
-                            <div class="text-xs text-blue-300">OpenAI</div>
                         </div>
                     </div>
-                    <p class="text-xs text-gray-300 mb-2">强大的AI对话模型，可用于写作、回答问题等多种场景</p>
-                    <div class="flex justify-between items-center">
-                        <div class="flex">
-                            <i class="fas fa-star text-yellow-400 text-xs"></i>
-                            <i class="fas fa-star text-yellow-400 text-xs"></i>
-                            <i class="fas fa-star text-yellow-400 text-xs"></i>
-                            <i class="fas fa-star text-yellow-400 text-xs"></i>
-                            <i class="fas fa-star text-yellow-400 text-xs"></i>
+                </div>
+                <div class="p-4">
+                    <p class="text-gray-300 text-sm mb-3">
+                        Anthropic推出的大语言模型，精通推理、写作、研究与创作。Claude 3.7 Sonnet是当前可用的最先进模型之一。
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex space-x-2">
+                            <div class="text-xs bg-green-900/50 text-green-400 px-2 py-1 rounded">免费试用</div>
+                            <div class="text-xs bg-blue-900/50 text-blue-400 px-2 py-1 rounded">API可用</div>
                         </div>
-                        <button class="px-3 py-1 bg-gradient-to-r from-blue-600 to-blue-400 text-white text-xs rounded-full glow-button">使用</button>
+                        <div class="text-gray-400 text-xs">
+                            <i class="fas fa-eye mr-1"></i>
+                            <span>8.6k</span>
+                        </div>
+                    </div>
                     </div>
                 </div>
                 
-                <!-- 工具卡片2 -->
-                <div class="glass-card rounded-2xl p-4 tool-card">
-                    <div class="flex items-center mb-3">
-                        <div class="tool-icon bg-purple-900/50 text-purple-400 mr-3">
-                            <i class="fas fa-image"></i>
+            <div class="glass-card rounded-xl overflow-hidden mb-4 neon-border">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1671226030362-94c294314850?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80" class="w-full h-40 object-cover" alt="Midjourney">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-1">Midjourney</h3>
+                                <div class="flex space-x-2 mb-2">
+                                    <span class="bg-purple-900/70 text-purple-300 text-xs px-2 py-1 rounded-full">AI绘画</span>
+                                    <span class="bg-purple-900/70 text-purple-300 text-xs px-2 py-1 rounded-full">创意设计</span>
+                                </div>
+                            </div>
+                            <div class="bg-blue-500 rounded-full w-10 h-10 flex items-center justify-center">
+                                <i class="fas fa-arrow-right text-white"></i>
                         </div>
-                        <div>
-                            <h3 class="font-bold text-white">Midjourney</h3>
-                            <div class="text-xs text-purple-300">Midjourney Inc</div>
                         </div>
                     </div>
-                    <p class="text-xs text-gray-300 mb-2">AI图像生成工具，通过文本描述创建高质量艺术图像</p>
-                    <div class="flex justify-between items-center">
-                        <div class="flex">
-                            <i class="fas fa-star text-yellow-400 text-xs"></i>
-                            <i class="fas fa-star text-yellow-400 text-xs"></i>
-                            <i class="fas fa-star text-yellow-400 text-xs"></i>
-                            <i class="fas fa-star text-yellow-400 text-xs"></i>
-                            <i class="fas fa-star-half-alt text-yellow-400 text-xs"></i>
+                </div>
+                <div class="p-4">
+                    <p class="text-gray-300 text-sm mb-3">
+                        领先的AI图像生成工具，通过文本描述创建专业级别的艺术品和设计。最新版本V6提供了更高的图像质量和控制能力。
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex space-x-2">
+                            <div class="text-xs bg-yellow-900/50 text-yellow-400 px-2 py-1 rounded">付费</div>
+                            <div class="text-xs bg-blue-900/50 text-blue-400 px-2 py-1 rounded">Discord使用</div>
                         </div>
-                        <button class="px-3 py-1 bg-gradient-to-r from-purple-600 to-purple-400 text-white text-xs rounded-full glow-button">使用</button>
+                        <div class="text-gray-400 text-xs">
+                            <i class="fas fa-eye mr-1"></i>
+                            <span>12.3k</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- 热门工具 -->
+        <!-- 工具列表 -->
         <div class="px-4 py-3">
-            <h2 class="text-lg font-bold mb-3 text-white flex items-center">
-                <i class="fas fa-fire text-orange-400 mr-2"></i>
-                热门工具
-            </h2>
+            <h2 class="text-lg font-bold mb-3 text-white">AI工具列表</h2>
             
-            <div class="space-y-4 mb-6">
-                <!-- 工具列表项1 -->
-                <div class="glass-card rounded-2xl p-4 flex items-center tool-card">
-                    <div class="tool-icon bg-green-900/50 text-green-400 mr-3 flex-shrink-0">
-                        <i class="fas fa-language"></i>
+            <!-- 工具1 -->
+            <div class="glass-card rounded-xl p-4 mb-3 flex items-center">
+                <div class="tool-icon bg-gradient-to-br from-blue-600 to-blue-900 mr-4 text-white">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-bold text-white">ChatGPT</h3>
+                    <p class="text-gray-400 text-sm mb-1">OpenAI出品的对话式AI助手，支持各种写作和信息查询任务</p>
+                    <div class="flex space-x-2">
+                        <span class="bg-blue-900/50 text-blue-300 text-xs px-2 py-0.5 rounded-full">对话助手</span>
+                        <span class="bg-green-900/50 text-green-300 text-xs px-2 py-0.5 rounded-full">写作</span>
+                    </div>
+                </div>
+                <div class="ml-2">
+                    <button class="rounded-full w-8 h-8 bg-blue-500 flex items-center justify-center">
+                        <i class="fas fa-chevron-right text-white text-xs"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 工具2 -->
+            <div class="glass-card rounded-xl p-4 mb-3 flex items-center">
+                <div class="tool-icon bg-gradient-to-br from-red-600 to-red-900 mr-4 text-white">
+                    <i class="fas fa-video"></i>
                     </div>
                     <div class="flex-1">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="font-bold text-white">DeepL翻译</h3>
-                                <div class="text-xs text-green-300">DeepL</div>
+                    <h3 class="font-bold text-white">Runway Gen-2</h3>
+                    <p class="text-gray-400 text-sm mb-1">专业AI视频生成工具，可通过文本、图片生成和编辑视频</p>
+                    <div class="flex space-x-2">
+                        <span class="bg-red-900/50 text-red-300 text-xs px-2 py-0.5 rounded-full">视频生成</span>
+                        <span class="bg-orange-900/50 text-orange-300 text-xs px-2 py-0.5 rounded-full">编辑</span>
+                    </div>
+                </div>
+                <div class="ml-2">
+                    <button class="rounded-full w-8 h-8 bg-blue-500 flex items-center justify-center">
+                        <i class="fas fa-chevron-right text-white text-xs"></i>
+                    </button>
+                </div>
                             </div>
-                            <button class="px-3 py-1 bg-gradient-to-r from-green-600 to-green-400 text-white text-xs rounded-full glow-button">使用</button>
+            
+            <!-- 工具3 -->
+            <div class="glass-card rounded-xl p-4 mb-3 flex items-center">
+                <div class="tool-icon bg-gradient-to-br from-green-600 to-green-900 mr-4 text-white">
+                    <i class="fas fa-code"></i>
                         </div>
-                        <p class="text-xs text-gray-300 mt-1">基于深度学习的高精度翻译工具，支持多种语言</p>
+                <div class="flex-1">
+                    <h3 class="font-bold text-white">GitHub Copilot</h3>
+                    <p class="text-gray-400 text-sm mb-1">AI编程助手，实时代码补全和生成，提升开发效率</p>
+                    <div class="flex space-x-2">
+                        <span class="bg-green-900/50 text-green-300 text-xs px-2 py-0.5 rounded-full">代码</span>
+                        <span class="bg-blue-900/50 text-blue-300 text-xs px-2 py-0.5 rounded-full">开发者</span>
+                    </div>
+                </div>
+                <div class="ml-2">
+                    <button class="rounded-full w-8 h-8 bg-blue-500 flex items-center justify-center">
+                        <i class="fas fa-chevron-right text-white text-xs"></i>
+                    </button>
                     </div>
                 </div>
                 
-                <!-- 工具列表项2 -->
-                <div class="glass-card rounded-2xl p-4 flex items-center tool-card">
-                    <div class="tool-icon bg-red-900/50 text-red-400 mr-3 flex-shrink-0">
-                        <i class="fas fa-microphone"></i>
+            <!-- 工具4 -->
+            <div class="glass-card rounded-xl p-4 mb-3 flex items-center">
+                <div class="tool-icon bg-gradient-to-br from-purple-600 to-purple-900 mr-4 text-white">
+                    <i class="fas fa-magic"></i>
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-bold text-white">DALL-E 3</h3>
+                    <p class="text-gray-400 text-sm mb-1">OpenAI的AI图像生成模型，可将文本描述转换为精美图像</p>
+                    <div class="flex space-x-2">
+                        <span class="bg-purple-900/50 text-purple-300 text-xs px-2 py-0.5 rounded-full">图像生成</span>
+                        <span class="bg-blue-900/50 text-blue-300 text-xs px-2 py-0.5 rounded-full">设计</span>
+                    </div>
+                </div>
+                <div class="ml-2">
+                    <button class="rounded-full w-8 h-8 bg-blue-500 flex items-center justify-center">
+                        <i class="fas fa-chevron-right text-white text-xs"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 工具5 -->
+            <div class="glass-card rounded-xl p-4 mb-3 flex items-center">
+                <div class="tool-icon bg-gradient-to-br from-yellow-600 to-yellow-900 mr-4 text-white">
+                    <i class="fas fa-language"></i>
                     </div>
                     <div class="flex-1">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="font-bold text-white">Whisper</h3>
-                                <div class="text-xs text-red-300">OpenAI</div>
-                            </div>
-                            <button class="px-3 py-1 bg-gradient-to-r from-red-600 to-red-400 text-white text-xs rounded-full glow-button">使用</button>
-                        </div>
-                        <p class="text-xs text-gray-300 mt-1">强大的语音识别模型，可将语音转换为文本</p>
+                    <h3 class="font-bold text-white">Notion AI</h3>
+                    <p class="text-gray-400 text-sm mb-1">集成在Notion中的AI助手，可编写、总结、和改写内容</p>
+                    <div class="flex space-x-2">
+                        <span class="bg-yellow-900/50 text-yellow-300 text-xs px-2 py-0.5 rounded-full">生产力</span>
+                        <span class="bg-green-900/50 text-green-300 text-xs px-2 py-0.5 rounded-full">写作</span>
                     </div>
+                </div>
+                <div class="ml-2">
+                    <button class="rounded-full w-8 h-8 bg-blue-500 flex items-center justify-center">
+                        <i class="fas fa-chevron-right text-white text-xs"></i>
+                    </button>
+                </div>
+                            </div>
+            
+            <!-- 工具6 -->
+            <div class="glass-card rounded-xl p-4 mb-3 flex items-center">
+                <div class="tool-icon bg-gradient-to-br from-cyan-600 to-cyan-900 mr-4 text-white">
+                    <i class="fas fa-microphone"></i>
+                        </div>
+                <div class="flex-1">
+                    <h3 class="font-bold text-white">ElevenLabs</h3>
+                    <p class="text-gray-400 text-sm mb-1">高质量AI语音合成，可生成自然逼真的语音内容</p>
+                    <div class="flex space-x-2">
+                        <span class="bg-cyan-900/50 text-cyan-300 text-xs px-2 py-0.5 rounded-full">语音合成</span>
+                        <span class="bg-blue-900/50 text-blue-300 text-xs px-2 py-0.5 rounded-full">内容</span>
+                    </div>
+                </div>
+                <div class="ml-2">
+                    <button class="rounded-full w-8 h-8 bg-blue-500 flex items-center justify-center">
+                        <i class="fas fa-chevron-right text-white text-xs"></i>
+                    </button>
                 </div>
             </div>
         </div>
         
-        <!-- 新上线工具 -->
-        <div class="px-4 py-3 mb-6">
+        <!-- 破局定制工具 -->
+        <div class="px-4 py-3 mb-16">
             <h2 class="text-lg font-bold mb-3 text-white flex items-center">
-                <i class="fas fa-rocket text-blue-400 mr-2 animate-pulse-fast"></i>
-                新上线
+                <i class="fas fa-flask text-green-400 mr-2"></i>
+                破局定制工具
             </h2>
             
-            <div class="glass-card rounded-2xl p-4 mb-4 tool-card">
+            <div class="glass-card rounded-xl p-4 cyber-line mb-3">
+                <div class="flex justify-between items-start mb-3">
                 <div class="flex items-center">
-                    <div class="tool-icon bg-cyan-900/50 text-cyan-400 mr-3 flex-shrink-0">
-                        <i class="fas fa-brain"></i>
+                        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-green-500 to-blue-600 flex items-center justify-center mr-3">
+                            <i class="fas fa-robot text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white">破局智能助手</h3>
+                            <p class="text-xs text-gray-400">由AI破局俱乐部定制开发的专属工具</p>
+                        </div>
                     </div>
-                    <div class="flex-1">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="font-bold text-white">Claude 3</h3>
-                                <div class="text-xs text-cyan-300">Anthropic</div>
-                            </div>
-                            <div class="bg-cyan-900/50 text-cyan-300 text-xs px-2 py-0.5 rounded-full">新品</div>
-                        </div>
-                        <p class="text-xs text-gray-300 mt-1">新一代AI助手，具有更强的理解能力和创造力</p>
-                        <div class="flex justify-between items-center mt-2">
-                            <div class="flex">
-                                <i class="fas fa-star text-yellow-400 text-xs"></i>
-                                <i class="fas fa-star text-yellow-400 text-xs"></i>
-                                <i class="fas fa-star text-yellow-400 text-xs"></i>
-                                <i class="fas fa-star text-yellow-400 text-xs"></i>
-                                <i class="fas fa-star text-yellow-400 text-xs"></i>
-                            </div>
-                            <button class="px-3 py-1 bg-gradient-to-r from-cyan-600 to-cyan-400 text-white text-xs rounded-full glow-button">体验</button>
-                        </div>
+                    <div class="px-2 py-0.5 rounded bg-green-600/50 text-green-300 text-xs">
+                        <i class="fas fa-crown mr-1"></i>
+                        会员专享
                     </div>
                 </div>
+                <p class="text-sm text-gray-300 mb-3">
+                    基于Claude 3.7和破局知识库，专为AI破局成员打造的专属AI助手，了解全部破局课程内容和资源，提供精准指导和解答。
+                </p>
+                <button class="bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-full py-2 px-4 w-full text-sm font-medium">
+                    了解详情
+                </button>
+                            </div>
+            
+            <div class="glass-card rounded-xl p-4 cyber-line">
+                <div class="flex justify-between items-start mb-3">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center mr-3">
+                            <i class="fas fa-book text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white">破局资源库</h3>
+                            <p class="text-xs text-gray-400">AI学习资源一站式搜索与获取</p>
+                        </div>
+                    </div>
+                    <div class="px-2 py-0.5 rounded bg-green-600/50 text-green-300 text-xs">
+                        <i class="fas fa-crown mr-1"></i>
+                        会员专享
+                    </div>
+                </div>
+                <p class="text-sm text-gray-300 mb-3">
+                    集合破局全部精华内容和资源，包含AI教程、项目案例、副业模型，支持智能搜索和推荐，帮你快速找到所需内容。
+                </p>
+                <button class="bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-full py-2 px-4 w-full text-sm font-medium">
+                    了解详情
+                </button>
             </div>
         </div>
     </div>
@@ -435,7 +469,7 @@
         </a>
         <a href="tools.html" class="flex flex-col items-center text-blue-500">
             <i class="fas fa-tools text-xl"></i>
-            <span class="text-xs mt-1">AI工具研发中心</span>
+            <span class="text-xs mt-1">AI工具</span>
         </a>
         <a href="profile.html" class="flex flex-col items-center text-gray-500">
             <i class="fas fa-user text-xl"></i>

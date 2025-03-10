@@ -187,205 +187,257 @@
     
     <!-- 内容区域 -->
     <div class="content-area">
-        <!-- 背景粒子 -->
-        <div class="particle absolute top-1/4 left-1/4" style="animation-delay: 0s;"></div>
-        <div class="particle absolute top-3/4 left-1/2" style="animation-delay: 0.5s;"></div>
-        <div class="particle absolute top-1/3 left-3/4" style="animation-delay: 1s;"></div>
-        <div class="particle absolute top-2/3 left-1/3" style="animation-delay: 1.5s;"></div>
-        <div class="particle absolute top-1/2 left-1/4" style="animation-delay: 2s;"></div>
-        
         <!-- 顶部导航 -->
-        <div class="px-4 py-3 flex justify-between items-center">
-            <div class="text-xl font-bold">活动</div>
+        <div class="px-4 py-3 flex justify-between items-center bg-gradient-to-r from-blue-600 to-blue-800">
+            <div class="text-xl font-bold text-white flex items-center">
+                <i class="fas fa-calendar-alt mr-2"></i>
+                AI破局活动
+            </div>
             <div class="flex space-x-3">
-                <button class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center">
-                    <i class="fas fa-search text-blue-400"></i>
+                <button class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white">
+                    <i class="fas fa-search"></i>
                 </button>
-                <button class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center">
-                    <i class="fas fa-filter text-blue-400"></i>
+                <button class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white">
+                    <i class="fas fa-share-alt"></i>
                 </button>
             </div>
         </div>
         
-        <!-- 活动banner -->
-        <div class="px-4 py-3">
-            <div class="activity-banner flex items-center">
-                <div class="flex-1">
-                    <h2 class="text-xl font-bold mb-1">3月破局行动</h2>
-                    <p class="text-white/80 text-sm mb-3">探索AI最新技术与应用</p>
-                    <button class="bg-white text-indigo-600 px-4 py-1.5 rounded-full text-sm font-medium glow-button">了解详情 <i class="fas fa-chevron-right ml-1 text-xs"></i></button>
+        <!-- 活动类型切换 -->
+        <div class="flex px-4 py-2 space-x-2 overflow-x-auto">
+            <button class="px-3 py-1.5 rounded-full bg-gradient-to-r from-blue-600 to-blue-400 text-white text-sm font-medium">全部</button>
+            <button class="px-3 py-1.5 rounded-full bg-gray-800 text-gray-300 text-sm font-medium">破局行动</button>
+            <button class="px-3 py-1.5 rounded-full bg-gray-800 text-gray-300 text-sm font-medium">线上分享</button>
+            <button class="px-3 py-1.5 rounded-full bg-gray-800 text-gray-300 text-sm font-medium">线下组局</button>
+        </div>
+        
+        <!-- 活动Banner -->
+        <div class="mx-4 my-4">
+            <div class="activity-banner">
+                <h2 class="text-xl font-bold mb-2">AI破局行动 - 第3期</h2>
+                <p class="text-white/80 text-sm mb-3">
+                    <i class="fas fa-rocket mr-1"></i>
+                    即将开启，与5万+AI极客共同成长，掌握AI技能，实现破局
+                </p>
+                <div class="flex space-x-2 mt-2">
+                    <span class="bg-blue-900/50 text-white text-xs px-2 py-1 rounded-full">AI技能精修</span>
+                    <span class="bg-blue-900/50 text-white text-xs px-2 py-1 rounded-full">实战变现</span>
+                    <span class="bg-blue-900/50 text-white text-xs px-2 py-1 rounded-full">出海先锋</span>
                 </div>
-                <div class="ml-4">
-                    <img src="https://images.unsplash.com/photo-1677442135136-760c813dce26?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=150&q=80" class="w-20 h-20 object-cover rounded-xl" alt="活动图片">
-                </div>
+                <button class="mt-4 px-4 py-2 bg-white text-blue-600 rounded-full font-bold text-sm glow-button">
+                    <i class="fas fa-star mr-1"></i>
+                    立即报名
+                </button>
             </div>
-        </div>
-        
-        <!-- 技术理念 -->
-        <div class="tech-quote px-4">
-            "何以破局，唯有行动"
-        </div>
-        
-        <!-- 分类导航 -->
-        <div class="flex px-4 py-2 space-x-4 overflow-x-auto">
-            <button class="px-4 py-2 rounded-full bg-primary text-white font-medium glow-button">全部</button>
-            <button class="px-4 py-2 rounded-full bg-gray-800 text-gray-300 font-medium">线上活动</button>
-            <button class="px-4 py-2 rounded-full bg-gray-800 text-gray-300 font-medium">线下活动</button>
-            <button class="px-4 py-2 rounded-full bg-gray-800 text-gray-300 font-medium">付费课程</button>
-            <button class="px-4 py-2 rounded-full bg-gray-800 text-gray-300 font-medium">免费活动</button>
         </div>
         
         <!-- 活动列表 -->
-        <div class="px-4 py-3">
-            <h2 class="text-lg font-bold mb-3">近期活动</h2>
+        <div class="px-4 py-2">
+            <h3 class="text-lg font-bold mb-3 text-white">热门活动</h3>
             
-            <!-- 活动卡片1 -->
-            <div class="glass-card rounded-2xl p-4 mb-4">
-                <div class="flex items-start">
-                    <div class="flex-1">
-                        <div class="bg-blue-900 text-blue-300 text-xs font-medium px-2 py-1 rounded-full inline-block mb-2">【预售】</div>
-                        <h3 class="font-bold mb-1">视觉与AI技术入门课</h3>
-                        <div class="flex items-center text-gray-400 text-xs mb-2">
-                            <i class="far fa-calendar-alt mr-1"></i>
-                            <span>3月15日 20:00-22:00</span>
+            <!-- 活动1 -->
+            <div class="glass-card rounded-xl mb-4 overflow-hidden">
+                <div class="p-4">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <div class="inline-block px-2 py-1 bg-blue-500/20 text-blue-400 text-xs rounded-full mb-2">【加强版】</div>
+                            <h4 class="font-bold text-md text-white">视频号AI数字人带货</h4>
                         </div>
-                        <div class="flex items-center">
-                            <div class="flex -space-x-2">
-                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-6 h-6 rounded-full border-2 border-gray-800" alt="用户头像">
-                                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-6 h-6 rounded-full border-2 border-gray-800" alt="用户头像">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-6 h-6 rounded-full border-2 border-gray-800" alt="用户头像">
-                            </div>
-                            <span class="text-xs text-gray-400 ml-2">72人报名</span>
+                        <div class="text-blue-400 font-bold">¥399</div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <div class="flex items-center text-gray-400 text-xs">
+                            <i class="far fa-calendar-alt mr-1"></i>
+                            <span>截止时间：3月10日 周一 23:59</span>
+                        </div>
+                        <div class="flex items-center text-gray-400 text-xs">
+                            <i class="far fa-clock mr-1"></i>
+                            <span>为期15天</span>
                         </div>
                     </div>
-                    <div class="ml-4">
-                        <div class="text-primary font-bold text-lg">¥399</div>
-                        <button class="mt-2 px-3 py-1 bg-primary text-white text-xs rounded-full glow-button">立即报名</button>
+                    
+                    <p class="text-gray-400 text-sm mb-3">
+                        AI数字人口播带货，是通过AI数字人技术，制作优秀的口播带货视频来进行带货。视频号电商快速发展，对短视频带货需求旺盛。
+                    </p>
+                    
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="flex -space-x-2">
+                                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-6 h-6 rounded-full border-2 border-gray-800" alt="用户头像">
+                                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-6 h-6 rounded-full border-2 border-gray-800" alt="用户头像">
+                            </div>
+                            <span class="text-xs text-gray-400 ml-2">722人参与</span>
+                        </div>
+                        <a href="activity-detail.html" class="px-3 py-1 bg-gradient-to-r from-blue-600 to-blue-400 text-white text-xs rounded-full">
+                            查看详情
+                        </a>
                     </div>
                 </div>
             </div>
             
-            <!-- 活动卡片2 -->
-            <div class="glass-card rounded-2xl p-4 mb-4">
-                <div class="flex items-start">
-                    <div class="flex-1">
-                        <div class="bg-orange-900 text-orange-300 text-xs font-medium px-2 py-1 rounded-full inline-block mb-2">【免费】</div>
-                        <h3 class="font-bold mb-1">视觉与AI技术入门分享</h3>
-                        <div class="flex items-center text-gray-400 text-xs mb-2">
-                            <i class="far fa-calendar-alt mr-1"></i>
-                            <span>3月10日 19:00-20:30</span>
+            <!-- 活动2 -->
+            <div class="glass-card rounded-xl mb-4 overflow-hidden">
+                <div class="p-4">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <div class="inline-block px-2 py-1 bg-orange-500/20 text-orange-400 text-xs rounded-full mb-2">【热门】</div>
+                            <h4 class="font-bold text-md text-white">AI写作变现（写手端）</h4>
                         </div>
+                        <div class="text-gray-400 font-bold">加入</div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <div class="flex items-center text-gray-400 text-xs">
+                            <i class="far fa-calendar-alt mr-1"></i>
+                            <span>长期招募</span>
+                        </div>
+                        <div class="flex items-center text-gray-400 text-xs">
+                            <i class="far fa-clock mr-1"></i>
+                            <span>随时可加入</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-400 text-sm mb-3">
+                        利用AI辅助创作内容，包含小说、短视频文案、公众号文章等，可兼职可全职，适合有写作基础的朋友参与，无需编程技能。
+                    </p>
+                    
+                    <div class="flex justify-between items-center">
                         <div class="flex items-center">
                             <div class="flex -space-x-2">
                                 <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-6 h-6 rounded-full border-2 border-gray-800" alt="用户头像">
-                                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-6 h-6 rounded-full border-2 border-gray-800" alt="用户头像">
+                            </div>
+                            <span class="text-xs text-gray-400 ml-2">1647人参与</span>
+                        </div>
+                        <a href="activity-detail.html" class="px-3 py-1 bg-gradient-to-r from-blue-600 to-blue-400 text-white text-xs rounded-full">
+                            立即参与
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 活动3 -->
+            <div class="glass-card rounded-xl mb-4 overflow-hidden">
+                <div class="p-4">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <div class="inline-block px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded-full mb-2">【流量型】</div>
+                            <h4 class="font-bold text-md text-white">AI写作变现（流量获客）</h4>
+                        </div>
+                        <div class="text-blue-400 font-bold">加入</div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <div class="flex items-center text-gray-400 text-xs">
+                            <i class="far fa-calendar-alt mr-1"></i>
+                            <span>长期招募</span>
+                        </div>
+                        <div class="flex items-center text-gray-400 text-xs">
+                            <i class="far fa-clock mr-1"></i>
+                            <span>随时可加入</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-400 text-sm mb-3">
+                        帮助内容创作者快速获取精准流量，实现内容变现，适合已有内容创作能力，希望扩大受众群体的创作者，包含全流程指导。
+                    </p>
+                    
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="flex -space-x-2">
                                 <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-6 h-6 rounded-full border-2 border-gray-800" alt="用户头像">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-6 h-6 rounded-full border-2 border-gray-800" alt="用户头像">
                             </div>
-                            <span class="text-xs text-gray-400 ml-2">128人报名</span>
+                            <span class="text-xs text-gray-400 ml-2">310人参与</span>
                         </div>
-                    </div>
-                    <div class="ml-4">
-                        <div class="text-gray-400 font-bold text-lg">免费</div>
-                        <button class="mt-2 px-3 py-1 bg-primary text-white text-xs rounded-full glow-button">立即报名</button>
+                        <a href="activity-detail.html" class="px-3 py-1 bg-gradient-to-r from-blue-600 to-blue-400 text-white text-xs rounded-full">
+                            查看详情
+                        </a>
                     </div>
                 </div>
             </div>
             
-            <!-- 活动卡片3 -->
-            <div class="glass-card rounded-2xl p-4 mb-4">
-                <div class="flex items-start">
-                    <div class="flex-1">
-                        <div class="bg-green-900 text-green-300 text-xs font-medium px-2 py-1 rounded-full inline-block mb-2">【线下】</div>
-                        <h3 class="font-bold mb-1">AI创业者交流会</h3>
-                        <div class="flex items-center text-gray-400 text-xs mb-2">
-                            <i class="far fa-calendar-alt mr-1"></i>
-                            <span>3月18日 14:00-17:00</span>
+            <!-- 活动4 -->
+            <div class="glass-card rounded-xl mb-4 overflow-hidden">
+                <div class="p-4">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <div class="inline-block px-2 py-1 bg-purple-500/20 text-purple-400 text-xs rounded-full mb-2">【吴恩达】</div>
+                            <h4 class="font-bold text-md text-white">AI提示词 & 搜能力特训</h4>
                         </div>
-                        <div class="flex items-center text-gray-400 text-xs mb-2">
+                        <div class="text-blue-400 font-bold">¥199</div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <div class="flex items-center text-gray-400 text-xs">
+                            <i class="far fa-calendar-alt mr-1"></i>
+                            <span>随时开始</span>
+                        </div>
+                        <div class="flex items-center text-gray-400 text-xs">
+                            <i class="far fa-clock mr-1"></i>
+                            <span>15天课程</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-400 text-sm mb-3">
+                        Prompt设计与搜索能力强化训练，掌握AI工具高效使用技巧，提升工作效率10倍，附赠实用Prompt模板库，适合所有AI初学者。
+                    </p>
+                    
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="flex -space-x-2">
+                                <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-6 h-6 rounded-full border-2 border-gray-800" alt="用户头像">
+                            </div>
+                            <span class="text-xs text-gray-400 ml-2">800+人已学习</span>
+                        </div>
+                        <a href="activity-detail.html" class="px-3 py-1 bg-gradient-to-r from-blue-600 to-blue-400 text-white text-xs rounded-full">
+                            立即学习
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 活动5 -->
+            <div class="glass-card rounded-xl mb-4 overflow-hidden">
+                <div class="p-4">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <div class="inline-block px-2 py-1 bg-red-500/20 text-red-400 text-xs rounded-full mb-2">【组局】</div>
+                            <h4 class="font-bold text-md text-white">无锡市|针对破局新人的破局行动营选择指导</h4>
+                        </div>
+                        <div class="text-blue-400 font-bold">¥50</div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <div class="flex items-center text-gray-400 text-xs">
+                            <i class="far fa-calendar-alt mr-1"></i>
+                            <span>2025年3月8日</span>
+                        </div>
+                        <div class="flex items-center text-gray-400 text-xs">
+                            <i class="far fa-clock mr-1"></i>
+                            <span>周六 13:00</span>
+                        </div>
+                        <div class="flex items-center text-gray-400 text-xs">
                             <i class="fas fa-map-marker-alt mr-1"></i>
-                            <span>北京市朝阳区创业大厦B座</span>
+                            <span>江苏省江阴市周庄镇龙湖花苑127号</span>
                         </div>
+                    </div>
+                    
+                    <p class="text-gray-400 text-sm mb-3">
+                        全面了解破局和破局行动，真正有效的利用破局优质资源提升自我，针对破局新人的指导活动，线下交流互动。
+                    </p>
+                    
+                    <div class="flex justify-between items-center">
                         <div class="flex items-center">
                             <div class="flex -space-x-2">
-                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-6 h-6 rounded-full border-2 border-gray-800" alt="用户头像">
-                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-6 h-6 rounded-full border-2 border-gray-800" alt="用户头像">
-                                <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-6 h-6 rounded-full border-2 border-gray-800" alt="用户头像">
+                                <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-6 h-6 rounded-full border-2 border-gray-800" alt="用户头像">
+                                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-6 h-6 rounded-full border-2 border-gray-800" alt="用户头像">
                             </div>
-                            <span class="text-xs text-gray-400 ml-2">56人报名</span>
+                            <span class="text-xs text-gray-400 ml-2">已报名 4/7</span>
                         </div>
-                    </div>
-                    <div class="ml-4">
-                        <div class="text-primary font-bold text-lg">¥99</div>
-                        <button class="mt-2 px-3 py-1 bg-primary text-white text-xs rounded-full glow-button">立即报名</button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 活动卡片4 -->
-            <div class="glass-card rounded-2xl p-4 mb-4">
-                <div class="flex items-start">
-                    <div class="flex-1">
-                        <div class="bg-purple-900 text-purple-300 text-xs font-medium px-2 py-1 rounded-full inline-block mb-2">【系列课】</div>
-                        <h3 class="font-bold mb-1">AI写作实战训练营</h3>
-                        <div class="flex items-center text-gray-400 text-xs mb-2">
-                            <i class="far fa-calendar-alt mr-1"></i>
-                            <span>3月20日起 每周二、四 20:00</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="flex -space-x-2">
-                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-6 h-6 rounded-full border-2 border-gray-800" alt="用户头像">
-                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-6 h-6 rounded-full border-2 border-gray-800" alt="用户头像">
-                                <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" class="w-6 h-6 rounded-full border-2 border-gray-800" alt="用户头像">
-                            </div>
-                            <span class="text-xs text-gray-400 ml-2">89人报名</span>
-                        </div>
-                    </div>
-                    <div class="ml-4">
-                        <div class="text-primary font-bold text-lg">¥599</div>
-                        <button class="mt-2 px-3 py-1 bg-primary text-white text-xs rounded-full glow-button">立即报名</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 往期活动 -->
-        <div class="px-4 py-3 mb-4">
-            <h2 class="text-lg font-bold mb-3">往期活动</h2>
-            
-            <div class="grid grid-cols-2 gap-4">
-                <!-- 往期活动1 -->
-                <div class="glass-card rounded-2xl overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1591696205602-2f950c417cb9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80" class="w-full h-32 object-cover" alt="往期活动">
-                    <div class="p-3">
-                        <h3 class="font-bold text-sm mb-1">AI产品设计工作坊</h3>
-                        <div class="text-gray-400 text-xs">2月25日</div>
-                    </div>
-                </div>
-                
-                <!-- 往期活动2 -->
-                <div class="glass-card rounded-2xl overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80" class="w-full h-32 object-cover" alt="往期活动">
-                    <div class="p-3">
-                        <h3 class="font-bold text-sm mb-1">AI创业者分享会</h3>
-                        <div class="text-gray-400 text-xs">2月18日</div>
-                    </div>
-                </div>
-                
-                <!-- 往期活动3 -->
-                <div class="glass-card rounded-2xl overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80" class="w-full h-32 object-cover" alt="往期活动">
-                    <div class="p-3">
-                        <h3 class="font-bold text-sm mb-1">AI技术沙龙</h3>
-                        <div class="text-gray-400 text-xs">2月10日</div>
-                    </div>
-                </div>
-                
-                <!-- 往期活动4 -->
-                <div class="glass-card rounded-2xl overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80" class="w-full h-32 object-cover" alt="往期活动">
-                    <div class="p-3">
-                        <h3 class="font-bold text-sm mb-1">AI应用案例分享</h3>
-                        <div class="text-gray-400 text-xs">2月5日</div>
+                        <a href="activity-detail.html" class="px-3 py-1 bg-gradient-to-r from-blue-600 to-blue-400 text-white text-xs rounded-full">
+                            立即报名
+                        </a>
                     </div>
                 </div>
             </div>
@@ -412,7 +464,7 @@
         </a>
         <a href="tools.html" class="flex flex-col items-center text-gray-500">
             <i class="fas fa-tools text-xl"></i>
-            <span class="text-xs mt-1">AI工具研发中心</span>
+            <span class="text-xs mt-1">AI工具</span>
         </a>
         <a href="profile.html" class="flex flex-col items-center text-gray-500">
             <i class="fas fa-user text-xl"></i>
